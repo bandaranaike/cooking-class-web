@@ -907,6 +907,10 @@ select{
   margin-left: auto;
   margin-right: auto;
 }
+.my-5{
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
 .ml-3{
   margin-left: 0.75rem;
 }
@@ -978,6 +982,12 @@ select{
 }
 .-mt-px{
   margin-top: -1px;
+}
+.mb-5{
+  margin-bottom: 1.25rem;
+}
+.mb-10{
+  margin-bottom: 2.5rem;
 }
 .block{
   display: block;
@@ -1272,6 +1282,10 @@ select{
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
+.border-gray-50{
+  --tw-border-opacity: 1;
+  border-color: rgb(249 250 251 / var(--tw-border-opacity));
+}
 .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1341,6 +1355,9 @@ select{
 }
 .p-6{
   padding: 1.5rem;
+}
+.p-4{
+  padding: 1rem;
 }
 .px-4{
   padding-left: 1rem;
@@ -1437,11 +1454,14 @@ select{
 .pr-9{
   padding-right: 2.25rem;
 }
-.pr-8{
-  padding-right: 2rem;
+.pl-5{
+  padding-left: 1.25rem;
 }
-.pr-10{
-  padding-right: 2.5rem;
+.pb-5{
+  padding-bottom: 1.25rem;
+}
+.pr-5{
+  padding-right: 1.25rem;
 }
 .text-left{
   text-align: left;
@@ -3835,6 +3855,9 @@ blockquote cite { font-size: 14px; margin-top: 15px; display: block; font-weight
 @media (min-width: 1024px){
   .lg\:col-span-4{
     grid-column: span 4 / span 4;
+  }
+  .lg\:p-8{
+    padding: 2rem;
   }
   .lg\:px-8{
     padding-left: 2rem;
