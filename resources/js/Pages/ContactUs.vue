@@ -204,7 +204,6 @@ export default defineComponent({
     watch: {
         form: {
             handler(val) {
-                console.log("newVal");
                 Object.keys(val).map((k) => {
                     this.errors[k] = null;
                 });

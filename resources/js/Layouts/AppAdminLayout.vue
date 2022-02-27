@@ -23,6 +23,11 @@
                                     Dashboard
                                 </jet-nav-link>
                             </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <jet-nav-link :href="route('review.create')" :active="route().current('review.create')">
+                                    Create review
+                                </jet-nav-link>
+                            </div>
                         </div>
 
 
