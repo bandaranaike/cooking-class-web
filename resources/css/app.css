@@ -3,4 +3,5 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 @import "theme/css/font-awesome.min.css";
+@import "theme/css/flaticon.css";
 @import "theme/css/style.css";

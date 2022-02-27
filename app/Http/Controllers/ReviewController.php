@@ -6,12 +6,15 @@ use App\Http\Requests\StoreReviewRequest;
 use App\Http\Requests\UpdateReviewRequest;
 use App\Models\Review;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class ReviewController extends Controller
 {
+    const USER_ALIAS_DIR_NAME = "user-alias";
+
     /**
      * Display a listing of the resource.
      *
@@ -40,16 +43,26 @@ class ReviewController extends Controller
      */
     public function store(StoreReviewRequest $request): JsonResponse
     {
-        //dd($request->get('user_name'));
 
         $review = new Review();
         $review->rating = $request->get('rating');
         $review->user_name = $request->get('user_name');
+        $review->user_country = $request->get('user_country');
+        $review->user_image = $this->saveUploadedUserImage($request);
         $review->message = $request->get('message');
-        $review->date = Carbon::parse($request->get('date'))->format('Y-m-d');
+        $review->date = Carbon::parse(\DateTime::createFromFormat("D M d Y", $request->get('date')))->format('Y-m-d');
         $review->save();
 
-        return new JsonResponse("Success!");
+        return new JsonResponse("Review has been saved successfully!");
+    }
+
+    /**
+     * @param Request $request
+     * @return bool|string
+     */
+    private function saveUploadedUserImage(Request $request): bool|string
+    {
+        return $request->hasFile('user_image') ? $request->file('user_image')->store(self::USER_ALIAS_DIR_NAME) : self::USER_ALIAS_DIR_NAME . "/default.png";
     }
 
     /**

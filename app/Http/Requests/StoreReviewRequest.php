@@ -22,12 +22,13 @@ class StoreReviewRequest extends FormRequest
      *
      * @return array
      */
-    #[ArrayShape(["rating" => "string", "user_name" => "string", "message" => "string"])] public function rules(): array
+    #[ArrayShape(["rating" => "string", "user_name" => "string", "message" => "string", "user_image" => "string"])] public function rules(): array
     {
         return [
             "rating" => "required|numeric",
             "user_name" => "required|string",
-            "message" => "required"
+            "message" => "required|string|max:1024",
+            "user_image" => "file|mimes:jpg,png,gif"
         ];
     }
 }

@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "vue-star-rating": "^2.1.0",
+        "vue3-country-region-select": "^1.0.0",
         "vue3-datepicker": "^0.3.2"
     }
 }

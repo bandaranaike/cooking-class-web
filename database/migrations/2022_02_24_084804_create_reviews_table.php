@@ -17,8 +17,10 @@ return new class extends Migration
             $table->id();
             $table->tinyInteger('rating')->default(5);
             $table->string('user_name');
+            $table->string('user_image');
+            $table->string('user_country');
             $table->enum('status', ["PENDING", "APPROVED", "DELETED", "EXPIRED"])->default('PENDING');
-            $table->string('message');
+            $table->string('message', 1024);
             $table->string('hash')->nullable();
             $table->date('date')->nullable();
             $table->timestamps();
