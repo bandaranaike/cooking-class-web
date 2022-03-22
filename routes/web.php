@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Foundation\Application;
@@ -29,3 +30,9 @@ Route::post('contact-us', [ContactController::class, 'store'])->name('contact.cr
 
 Route::get('review', [ReviewController::class, 'create'])->name('review.form');
 Route::post('review', [ReviewController::class, 'store'])->name('review.create');
+
+Route::get('gallery', [GalleryController::class, 'index'])->name('gallery.show');
+Route::get('gallery/create', [GalleryController::class, 'create'])->name('gallery.form');
+Route::post('gallery/create', [GalleryController::class, 'store'])->name('gallery.create');
+Route::get('gallery/show/{gallery:slug}', [GalleryController::class, 'show'])->name('gallery.item');
+Route::post('gallery/check-available-slug', [GalleryController::class, 'checkAvailableSlug'])->name('gallery.slug-availability');
