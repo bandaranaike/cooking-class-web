@@ -6,7 +6,9 @@
             </h2>
         </template>
         <div class="grid grid-cols-1 md:grid-cols-3">
+
             <div class="gallery-item" v-for="image in  gallery.images">
+                Image  {{image}}
                 <img :src="`/storage/${image.image}`" :alt="image.title" @click="showGalleryPopup(image)">
             </div>
         </div>
@@ -15,6 +17,7 @@
             <slot name="title">DDDD</slot>
             <x-slot name="content">DDDD</x-slot>
             <div class="grid grid-cols-1">
+                currentPopupImage 1    {{currentPopupImage}}
                 <img :src="`/storage/${currentPopupImage.image}`" :alt="currentPopupImage.title">
             </div>
             <div class="grid xs:grid-cols-4 sm:grid-cols-6 md:grid-cols-8">
@@ -26,10 +29,12 @@
 
         <modal :show="true">
             <div class="grid grid-cols-1">
+                currentPopupImage 2   {{currentPopupImage}}
                 <img :src="`/storage/${currentPopupImage.image}`" :alt="currentPopupImage.title">
             </div>
             <div class="grid xs:grid-cols-4 sm:grid-cols-6 md:grid-cols-8">
                 <div class="gallery-thumb" v-for="image in gallery.images">
+
                     <img :src="`/storage/${image.image}`" :alt="image.title" @click="showGalleryPopup(image)">
                 </div>
             </div>
@@ -63,6 +68,7 @@ export default defineComponent({
     },
     methods: {
         showGalleryPopup(image) {
+            console.log("Image ", image)
             this.currentPopupImage = image;
             this.isGalleryPopupShow = true;
         }

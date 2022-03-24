@@ -28,6 +28,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('contact-us', [ContactController::class, 'create'])->name('contact.form');
 Route::post('contact-us', [ContactController::class, 'store'])->name('contact.create');
 
+Route::get('about-us', [ContactController::class, 'create'])->name('about-us');
+
 Route::get('review', [ReviewController::class, 'create'])->name('review.form');
 Route::post('review', [ReviewController::class, 'store'])->name('review.create');
 
