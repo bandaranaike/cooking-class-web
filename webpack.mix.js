@@ -16,6 +16,7 @@ mix.js('resources/js/app.js', 'public/js').vue()
         require('postcss-import'),
         require('tailwindcss'),
     ])
+    .sass('resources/css/theme/css/slideshow.scss', "public/css")
     .webpackConfig(require('./webpack.config'));
 
 if (mix.inProduction()) {

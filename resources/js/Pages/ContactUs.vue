@@ -1,7 +1,7 @@
 <template>
     <app-layout title="Contact us">
         <section class="contact bg-white page-section-ptb">
-            <div class="container">
+            <div class="container md:mx-auto">
 
                 <div class="section-title text-center">
                     <div class="title-separator">
