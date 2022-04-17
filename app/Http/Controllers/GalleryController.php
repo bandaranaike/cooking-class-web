@@ -64,12 +64,10 @@ class GalleryController extends Controller
     {
         $saving_image_objects = [];
         foreach ($request->file('images') as $file) {
-            //dd($file);
             $gallery_image = new GalleryImage();
             $gallery_image->image = $file->store('gallery');
             $saving_image_objects[] = $gallery_image;
         }
-       // dd($saving_image_objects);
 
         $gallery->images()->saveMany($saving_image_objects);
     }
@@ -83,7 +81,7 @@ class GalleryController extends Controller
     public function show(Gallery $gallery): Response
     {
         //dd($gallery);
-        $gallery->load('images');
+        $gallery->load('images:gallery_id,image as src,image as thumbnail');
         return Inertia::render('Gallery/GalleryView', compact('gallery'));
     }
 

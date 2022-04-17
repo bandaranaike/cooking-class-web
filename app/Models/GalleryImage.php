@@ -11,4 +11,14 @@ use Illuminate\Database\Eloquent\Model;
 class GalleryImage extends Model
 {
     use HasFactory;
+
+    public function getSrcAttribute($image_name)
+    {
+        return "/storage/" . $image_name;
+    }
+
+    public function getThumbnailAttribute($image_name)
+    {
+        return "/storage/" . $image_name;
+    }
 }

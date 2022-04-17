@@ -29,6 +29,7 @@
         "vue-loader": "^16.1.2"
     },
     "dependencies": {
+        "@itadori/vue-picture-swipe-control": "^1.1.17",
         "vue-star-rating": "^2.1.0",
         "vue3-country-region-select": "^1.0.0",
         "vue3-datepicker": "^0.3.2"
