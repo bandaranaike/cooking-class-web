@@ -27,6 +27,9 @@
                                 <jet-nav-link :href="route('review.create')" :active="route().current('review.create')">
                                     Create review
                                 </jet-nav-link>
+                                <jet-nav-link :href="route('review.list')" :active="route().current('review.list')">
+                                    Reviews
+                                </jet-nav-link>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <jet-nav-link :href="route('gallery.create')"
