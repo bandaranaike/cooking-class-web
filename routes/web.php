@@ -32,6 +32,8 @@ Route::get('about-us', [ContactController::class, 'create'])->name('about-us');
 
 Route::get('review', [ReviewController::class, 'create'])->name('review.form');
 Route::post('review', [ReviewController::class, 'store'])->name('review.create');
+Route::get('reviews', [ReviewController::class, 'index'])->name('review.list');
+Route::patch('review', [ReviewController::class, 'updateStatus'])->name('review.change-status');
 
 Route::get('gallery', [GalleryController::class, 'index'])->name('gallery.show');
 Route::get('gallery/create', [GalleryController::class, 'create'])->name('gallery.form');

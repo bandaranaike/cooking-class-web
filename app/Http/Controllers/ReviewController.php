@@ -18,11 +18,12 @@ class ReviewController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function index()
+    public function index(): Response
     {
-
+        $reviews = Review::all();
+        return Inertia::render("Admin/ReviewList", compact('reviews'));
     }
 
     /**
@@ -108,5 +109,13 @@ class ReviewController extends Controller
     public function destroy(Review $review)
     {
         //
+    }
+
+    public function updateStatus(Request $request)
+    {
+        $review = Review::find($request->get('review_id'));
+        $review->status = $request->get('status');
+        $review->save();
+        return $review->status;
     }
 }

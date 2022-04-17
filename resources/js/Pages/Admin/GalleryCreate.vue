@@ -1,7 +1,7 @@
 <template>
     <app-admin-layout title="Create Gallery">
         <div class="grid grid-cols-1 md:grid-cols-2 pt-4 pl-4">
-            <jet-input @change="createSlug" :error="errors?.title" label="title" v-model="form.title"></jet-input>
+            <jet-input @change="createSlug" :error="errors?.title" label="Title" v-model="form.title"></jet-input>
             <jet-input @change="checkSlug" :error="errors?.slug" label="Slug" v-model="form.slug"></jet-input>
         </div>
         <div class="p-4">
