@@ -10,28 +10,19 @@
                 <div class="shadow-sm overflow-hidden my-8">
                     <table class="border-collapse table-auto w-full text-sm">
                         <thead>
-                        <tr>
-                            <th class="border-b dark:border-slate-200 font-medium p-4 pl-8 pt-0 pb-3 dark:text-slate-500 text-left">
-                                Rating
-                            </th>
-                            <th class="border-b dark:border-slate-200 font-medium p-4 pt-0 pb-3 text-slate-400 dark:text-slate-500 text-left">
-                                User
-                            </th>
-                            <th class="border-b dark:border-slate-200 font-medium p-4 pt-0 pb-3 text-slate-400 dark:text-slate-500 text-left">
-                                Country
-                            </th>
-                            <th class="border-b dark:border-slate-200 font-medium p-4 pt-0 pb-3 text-slate-400 dark:text-slate-500 text-left">
-                                Message
-                            </th>
-                            <th class="border-b border-slate-200 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 text-slate-500 text-left">
-                                Actions
+                        <tr v-for="(header, ind) in headers">
+                            <th class="border-b border-slate-200 font-medium p-4 pt-0 pb-3 text-slate-400 text-left"
+                                :class="{'pl-8': ind === 0, 'pr-8' : ind === headers.length - 1}">
+                                {{ header }}
                             </th>
                         </tr>
                         </thead>
                         <tbody class="bg-white">
-                        <tr v-for="review in reviews">
-                            <td class="border-b border-slate-200 p-4 pl-8 text-slate-500">
-                                {{ review.rating }}
+                        <tr v-for="(items, i) in dataItems">
+                            <td class="border-b border-slate-200 p-4 text-slate-500" v-for="itemKey in itemKeys"
+                                :class="{'pl-8': i === 0}"
+                            >
+                                {{ review[itemKey] }}
                             </td>
                             <td class="border-b border-slate-200 p-4 text-slate-500">
                                 {{ review.user_name }}
@@ -71,17 +62,24 @@ export default defineComponent({
     name: "ReviewList",
     components: {Button, AppAdminLayout},
     props: {
-        reviews: []
+        headers: [],
+        dataItems: [],
+        itemKeys: [],
+        actions: {
+            type: Array,
+            default() {
+                return [
+                    {status: "APPROVED", color: "green"},
+                    {status: "DELETED", color: "orange"},
+                    {status: "EXPIRED", color: "blue"},
+                    {status: "PENDING", color: "amber"},
+                ]
+            }
+        }
+
     },
     data() {
-        return {
-            actions: [
-                {status: "APPROVED", color: "green"},
-                {status: "DELETED", color: "orange"},
-                {status: "EXPIRED", color: "blue"},
-                {status: "PENDING", color: "amber"},
-            ]
-        }
+
     },
     methods: {
         firstLetter(word) {

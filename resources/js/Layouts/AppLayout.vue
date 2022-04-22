@@ -18,12 +18,12 @@
                             </div>
 
                             <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <div class="hidden space-x-4 sm:-my-px sm:ml-6 sm:flex">
                                 <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </jet-nav-link>
                             </div>
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <div class="hidden space-x-4 sm:-my-px sm:ml-4 sm:flex">
                                 <jet-nav-link :href="route('gallery.show')" :active="route().current('gallery.show')">
                                     Gallery
                                 </jet-nav-link>
@@ -31,9 +31,14 @@
                         </div>
 
                         <div class="flex">
-                            <div class="space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <div class="hidden space-x-4 sm:-my-px sm:ml-4 sm:flex">
+                                <jet-nav-link :href="route('about-us')" :active="route().current('about-us')">
+                                    About Us
+                                </jet-nav-link>
+                            </div>
+                            <div class="hidden space-x-4 sm:-my-px sm:ml-4 sm:flex">
                                 <jet-nav-link :href="route('contact.form')" :active="route().current('contact.form')">
-                                    Contact us
+                                    Contacts
                                 </jet-nav-link>
                             </div>
 
