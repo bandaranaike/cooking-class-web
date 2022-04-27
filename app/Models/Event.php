@@ -12,6 +12,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed $description
  * @property mixed $title
  * @property mixed $image
+ * @property mixed $status
+ * @property mixed|string $public_id
+ * @method static orderByDesc(string $string)
+ * @method static wherePublicId($public_id)
  */
 class Event extends Model
 {

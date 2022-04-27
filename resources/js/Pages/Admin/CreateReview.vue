@@ -6,9 +6,9 @@
             </h2>
         </template>
 
-        <div class="py-12">
+        <div class="py-3">
             <form action="">
-                <div class="grid grid-cols-1 md:grid-cols-3 pt-5 pl-5">
+                <div class="grid grid-cols-1 md:grid-cols-3 pl-5">
                     <div class="form-field pb-5 pr-5">
                         <label>Rating</label>
                         <star-rating v-model:rating="form.rating" star-size="40" :show-rating="false"></star-rating>

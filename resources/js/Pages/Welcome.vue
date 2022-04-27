@@ -52,77 +52,25 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="item">
+                    <div class="item" v-for="event in events">
                         <div class="blog-entry">
                             <div class="blog-entry-image">
-                                <img class="img-fluid" alt="" src="/images/blog/01.jpg"/>
-                                <div class="entry-date">27<span>NAV</span></div>
+                                <img class="img-fluid" :alt="event.title" :src="`/storage/${event.image}`"/>
+                                <div class="entry-date">{{ event.day }}<span>{{ event.month }}</span></div>
                             </div>
                             <div class="entry-content">
                                 <div class="entry-title">
-                                    <h3><a href="blog-single.html">Try some healthy food</a></h3>
+                                    <h3><a href="blog-single.html">{{ event.title }}</a></h3>
                                 </div>
                                 <div class="entry-meta">
-                                    <a href="#"><i class="fa fa-user"></i> By The Zayka</a>
-                                    <a href="#"><i class="fa fa-comments-o"></i> 5 Comments</a>
+                                    <a><i class="fa fa-user"></i> {{ event.number_of_pax }} pax</a>
+                                    <a><i class="fa fa-location-arrow"></i>@thotupola</a>
                                 </div>
                                 <div class="entry-description">
                                     <p>
-                                        Aptent taciti sociosqu ad litora euismod atras vulputate
-                                        iltricies etri elit class.
-                                    </p>
-                                    <a href="#"
-                                    >Read More <i class="fa fa-angle-double-right"></i
-                                    ></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="blog-entry">
-                            <div class="blog-entry-image">
-                                <img class="img-fluid" alt="" src="/images/blog/02.jpg"/>
-                                <div class="entry-date">27<span>NAV</span></div>
-                            </div>
-                            <div class="entry-content">
-                                <div class="entry-title">
-                                    <h3><a href="blog-single.html">Music For Your Soul</a></h3>
-                                </div>
-                                <div class="entry-meta">
-                                    <a href="#"><i class="fa fa-user"></i> By The Zayka</a>
-                                    <a href="#"><i class="fa fa-comments-o"></i> 5 Comments</a>
-                                </div>
-                                <div class="entry-description">
-                                    <p>
-                                        Iltricies etri elit euismod atras vulputate. Class aptent
-                                        taciti sociosqu ad litora.
-                                    </p>
-                                    <a href="#"
-                                    >Read More <i class="fa fa-angle-double-right"></i
-                                    ></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="blog-entry">
-                            <div class="blog-entry-image">
-                                <img class="img-fluid" alt="" src="/images/blog/03.jpg"/>
-                                <div class="entry-date">27<span>NAV</span></div>
-                            </div>
-                            <div class="entry-content">
-                                <div class="entry-title">
-                                    <h3><a href="blog-single.html">Dealing with Fomo</a></h3>
-                                </div>
-                                <div class="entry-meta">
-                                    <a href="#"><i class="fa fa-user"></i> By The Zayka</a>
-                                    <a href="#"><i class="fa fa-comments-o"></i> 5 Comments</a>
-                                </div>
-                                <div class="entry-description">
-                                    <p>
-                                        Class aptent taciti sociosqu ad litora euismod atras
-                                        vulputate iltricies etri elit.
+                                        {{ event.description }}
                                     </p>
                                     <a href="#"
                                     >Read More <i class="fa fa-angle-double-right"></i
@@ -312,6 +260,7 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import JetNavLink from "@/Jetstream/NavLink.vue";
 import SlideShow from "./Component/SlideShow.vue";
 import Welcome from "@/Jetstream/Welcome.vue";
+import axios from "axios";
 
 export default defineComponent({
     props: ["testimonials"],
@@ -321,5 +270,20 @@ export default defineComponent({
         SlideShow,
         Welcome,
     },
+    data() {
+        return {
+            events: []
+        }
+    },
+    mounted() {
+        this.getEvents();
+    },
+    methods: {
+        getEvents() {
+            axios.get('events/get-list').then(r => {
+                this.events = r.data;
+            })
+        }
+    }
 });
 </script>

@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
+            $table->uuid('public_id');
             $table->tinyInteger('rating')->default(5);
             $table->string('user_name');
             $table->string('user_image');

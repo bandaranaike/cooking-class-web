@@ -43,11 +43,11 @@
                                 {{ review.message }}
                             </td>
                             <td class="border-b border-slate-200 p-4 pr-8 text-slate-500">
-                                <button class="bg-gray-500 text-white py-1 px-2 rounded-full mr-2"
+                                <button class="bg-gray-500 text-white py-1 px-2 rounded-full mr-2 w-7 h-7"
                                         v-for="action in actions"
                                         :title="action.status"
                                         @click="changeStatus(review, action.status)"
-                                        :class=" review.status === action.status ? `bg-${action.color}-500` : ''">
+                                        :class=" review.status === action.status ? `bg-${action.color}-600` : ''">
                                     {{ firstLetter(action.status) }}
                                 </button>
                             </td>

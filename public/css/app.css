@@ -919,6 +919,14 @@ select{
   margin-left: 1.25rem;
   margin-right: 1.25rem;
 }
+.mx-3{
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+}
+.-mx-3{
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+}
 .ml-3{
   margin-left: 0.75rem;
 }
@@ -1003,11 +1011,29 @@ select{
 .mb-8{
   margin-bottom: 2rem;
 }
+.mb-2{
+  margin-bottom: 0.5rem;
+}
+.mb-3{
+  margin-bottom: 0.75rem;
+}
+.mr-4{
+  margin-right: 1rem;
+}
+.-ml-1{
+  margin-left: -0.25rem;
+}
+.mr-1{
+  margin-right: 0.25rem;
+}
 .block{
   display: block;
 }
 .inline-block{
   display: inline-block;
+}
+.inline{
+  display: inline;
 }
 .flex{
   display: flex;
@@ -1050,6 +1076,9 @@ select{
 }
 .h-20{
   height: 5rem;
+}
+.h-7{
+  height: 1.75rem;
 }
 .min-h-screen{
   min-height: 100vh;
@@ -1096,6 +1125,12 @@ select{
 .w-20{
   width: 5rem;
 }
+.w-14{
+  width: 3.5rem;
+}
+.w-7{
+  width: 1.75rem;
+}
 .min-w-0{
   min-width: 0px;
 }
@@ -1110,6 +1145,9 @@ select{
 }
 .max-w-6xl{
   max-width: 72rem;
+}
+.max-w-2xl{
+  max-width: 42rem;
 }
 .flex-1{
   flex: 1 1 0%;
@@ -1153,6 +1191,20 @@ select{
 .transform{
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+@-webkit-keyframes spin{
+  to{
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin{
+  to{
+    transform: rotate(360deg);
+  }
+}
+.animate-spin{
+  -webkit-animation: spin 1s linear infinite;
+          animation: spin 1s linear infinite;
+}
 .cursor-default{
   cursor: default;
 }
@@ -1164,6 +1216,11 @@ select{
 }
 .list-disc{
   list-style-type: disc;
+}
+.appearance-none{
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 .grid-cols-6{
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -1332,6 +1389,10 @@ select{
   --tw-border-opacity: 1;
   border-color: rgb(226 232 240 / var(--tw-border-opacity));
 }
+.border-amber-50{
+  --tw-border-opacity: 1;
+  border-color: rgb(255 251 235 / var(--tw-border-opacity));
+}
 .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1384,6 +1445,26 @@ select{
   --tw-bg-opacity: 1;
   background-color: rgb(148 163 184 / var(--tw-bg-opacity));
 }
+.bg-green-600{
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 163 74 / var(--tw-bg-opacity));
+}
+.bg-orange-600{
+  --tw-bg-opacity: 1;
+  background-color: rgb(234 88 12 / var(--tw-bg-opacity));
+}
+.bg-blue-600{
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+}
+.bg-amber-600{
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 119 6 / var(--tw-bg-opacity));
+}
+.bg-blue-700{
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+}
 .bg-opacity-25{
   --tw-bg-opacity: 0.25;
 }
@@ -1395,6 +1476,9 @@ select{
 }
 .bg-no-repeat{
   background-repeat: no-repeat;
+}
+.fill-blue-600{
+  fill: #2563eb;
 }
 .object-cover{
   -o-object-fit: cover;
@@ -1408,6 +1492,9 @@ select{
 }
 .p-4{
   padding: 1rem;
+}
+.p-12{
+  padding: 3rem;
 }
 .px-4{
   padding-left: 1rem;
@@ -1584,8 +1671,14 @@ select{
 .font-semibold{
   font-weight: 600;
 }
+.font-bold{
+  font-weight: 700;
+}
 .uppercase{
   text-transform: uppercase;
+}
+.italic{
+  font-style: italic;
 }
 .leading-5{
   line-height: 1.25rem;
@@ -1604,6 +1697,9 @@ select{
 }
 .tracking-wider{
   letter-spacing: 0.05em;
+}
+.tracking-wide{
+  letter-spacing: 0.025em;
 }
 .text-gray-500{
   --tw-text-opacity: 1;
@@ -3846,6 +3942,246 @@ blockquote cite { font-size: 14px; margin-top: 15px; display: block; font-weight
 @media all and (min-width:0\0) and (-webkit-min-device-pixel-ratio:0), all and (min-width:0\0) and (min-resolution:.001dpcm) {
     .no-csstransforms3d [data-book='book-1'].book, .no-js [data-book='book-1'].book, [data-book='book-1'].book .front { background: #1e2327 url(/images/menu-cover.png?e32b315ce4fad7b33aeb8a15f731e653); background-size: cover; }
 }
+/*Calendar Styles*/
+.cv-wrapper{display:flex;flex-direction:column;flex-grow:1;height:100%;min-height:100%;max-height:100%;overflow-x:hidden;overflow-y:hidden}
+.cv-wrapper,.cv-wrapper div{box-sizing:border-box;line-height:1em;font-size:1em}
+.cv-header-days{display:flex;flex-grow:0;flex-shrink:0;flex-basis:auto;flex-flow:row nowrap;border-width:0 0 0 1px}
+.cv-header-day{display:flex;flex-grow:1;flex-shrink:0;flex-basis:0;flex-flow:row nowrap;align-items:center;justify-content:center;text-align:center;border-width:1px 1px 0 0}
+.cv-weeks{display:flex;flex-grow:1;flex-shrink:1;flex-basis:auto;flex-flow:column nowrap;border-width:0 0 1px 1px;overflow-y:auto;-ms-overflow-style:none}
+.cv-weeknumber{width:2rem;position:relative;text-align:center;border-width:1px 1px 0 0;border-style:solid;line-height:1}
+.cv-week{display:flex;flex-grow:1;flex-shrink:1;flex-basis:0;flex-flow:row nowrap;min-height:3em;border-width:0;position:relative;width:100%;overflow-y:auto;-ms-overflow-style:none}
+.cv-weekdays{display:flex;flex-grow:1;flex-shrink:0;flex-basis:0;flex-flow:row nowrap;direction:ltr;position:relative;overflow-y:auto}
+.cv-day{display:flex;flex-grow:1;flex-shrink:0;flex-basis:0;position:relative;position:-webkit-sticky;position:sticky;top:0;border-width:1px 1px 0 0;direction:initial}
+.cv-day-number{height:auto;align-self:flex-start}
+.cv-day[draggable],.cv-item[draggable]{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+.cv-item{position:absolute;white-space:nowrap;overflow:hidden;background-color:#f7f7f7;border-width:1px;direction:initial}
+.cv-wrapper.wrap-item-title-on-hover .cv-item:hover{white-space:normal;z-index:1}
+.cv-header-days,.cv-header-day,.cv-weeks,.cv-week,.cv-day,.cv-item{border-style:solid;border-color:#ddd}
+.cv-item .endTime:before{content:"-"}
+.cv-header-day,.cv-day-number,.cv-item{padding:.2em}
+.cv-day-number:before{margin-right:.5em}
+.cv-item.offset0{left:0}
+.cv-item.offset1{left:calc((100% / 7))}
+.cv-item.offset2{left:calc((200% / 7))}
+.cv-item.offset3{left:calc((300% / 7))}
+.cv-item.offset4{left:calc((400% / 7))}
+.cv-item.offset5{left:calc((500% / 7))}
+.cv-item.offset6{left:calc((600% / 7))}
+.cv-item.span1{width:calc((100% / 7) - .05em)}
+.cv-item.span2{width:calc((200% / 7) - .05em)}
+.cv-item.span3{width:calc((300% / 7) - .05em)}
+.cv-item.span4{width:calc((400% / 7) - .05em)}
+.cv-item.span5{width:calc((500% / 7) - .05em)}
+.cv-item.span6{width:calc((600% / 7) - .05em)}
+.cv-item.span7{width:calc(100% - .05em)}
+.cv-weeks::-webkit-scrollbar,.cv-week::-webkit-scrollbar{width:0;background:transparent}
+.cv-header{display:flex;flex:0 1 auto;flex-flow:row nowrap;align-items:center;min-height:2.5em;border-width:1px 1px 0 1px}
+.cv-header .periodLabel{display:flex;flex:1 1 auto;flex-flow:row nowrap;min-height:1.5em;line-height:1;font-size:1.5em}
+.cv-header,.cv-header button{border-style:solid;border-color:#ddd}
+.cv-header-nav,.cv-header .periodLabel{margin:.1em .6em}
+.cv-header-nav button,.cv-header .periodLabel{padding:.4em .6em}
+.cv-header button{box-sizing:border-box;line-height:1em;font-size:1em;border-width:1px}
+/*
+**************************************************************
+This theme is the default shipping theme, it includes some
+decent defaults, but is separate from the calendar component
+to make it easier for users to implement their own themes w/o
+having to override as much.
+**************************************************************
+*/
+/* Header */
+.theme-default .cv-header,
+.theme-default .cv-header-day {
+	background-color: #f0f0f0;
+}
+.theme-default .cv-header .periodLabel {
+	font-size: 1.5em;
+}
+.theme-default .cv-header button {
+	color: #7f7f7f;
+}
+.theme-default .cv-header button:disabled {
+	color: #ccc;
+	background-color: #f7f7f7;
+}
+/* Grid */
+.theme-default .cv-weeknumber {
+	background-color: #e0e0e0;
+	border-color: #ccc;
+	color: #808080;
+}
+.theme-default .cv-weeknumber span {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.theme-default .cv-day.past {
+	background-color: #fafafa;
+}
+.theme-default .cv-day.outsideOfMonth {
+	background-color: #f7f7f7;
+}
+.theme-default .cv-day.today {
+	background-color: #ffe;
+}
+.theme-default .cv-day[aria-selected="true"] {
+	background-color: #ffc;
+}
+/* Events */
+.theme-default .cv-item {
+	border-color: #e0e0f0;
+	border-radius: 0.5em;
+	background-color: #e7e7ff;
+	text-overflow: ellipsis;
+}
+.theme-default .cv-item.purple {
+	background-color: #f0e0ff;
+	border-color: #e7d7f7;
+}
+.theme-default .cv-item.orange {
+	background-color: #ffe7d0;
+	border-color: #f7e0c7;
+}
+.theme-default .cv-item.continued::before,
+.theme-default .cv-item.toBeContinued::after {
+	content: " \21e2 ";
+	color: #999;
+}
+.theme-default .cv-item.toBeContinued {
+	border-right-style: none;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.theme-default .cv-item.isHovered.hasUrl {
+	text-decoration: underline;
+}
+.theme-default .cv-item.continued {
+	border-left-style: none;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+.cv-item.span3,
+.cv-item.span4,
+.cv-item.span5,
+.cv-item.span6,
+.cv-item.span7 {
+	text-align: center;
+}
+/* Event Times */
+.theme-default .cv-item .startTime,
+.theme-default .cv-item .endTime {
+	font-weight: bold;
+	color: #666;
+}
+/* Drag and drop */
+.theme-default .cv-day.draghover {
+	box-shadow: inset 0 0 0.2em 0.2em yellow;
+}
+/*
+********************************************************************************************************
+This theme adds emoji next to the day number for major holidays traditionally celebrated in the USA.
+
+There are two types of holidays: officially-recognized holidays, and traditionally-celebrated ones
+(most of the traditionally-celebrated ones are connected with the Christian faith.)
+
+To activate this theme, include the CSS and decorate the calendar instance with the `holidays-us-official`
+and/or `holidays-us-traditional` classes.
+********************************************************************************************************
+*/
+/*
+****************************************************
+Traditional US Holidays
+****************************************************
+*/
+/* Easter: example of a holiday that changes each year. Easy to pre-populate for a reasonable number of years. */
+.cv-wrapper.holiday-us-traditional .d2015-04-05 .cv-day-number::before {
+	content: "\271D";
+}
+.cv-wrapper.holiday-us-traditional .d2016-03-27 .cv-day-number::before {
+	content: "\271D";
+}
+.cv-wrapper.holiday-us-traditional .d2017-04-16 .cv-day-number::before {
+	content: "\271D";
+}
+.cv-wrapper.holiday-us-traditional .d2018-04-01 .cv-day-number::before {
+	content: "\271D";
+}
+.cv-wrapper.holiday-us-traditional .d2019-04-21 .cv-day-number::before {
+	content: "\271D";
+}
+.cv-wrapper.holiday-us-traditional .d2020-04-12 .cv-day-number::before {
+	content: "\271D";
+}
+.cv-wrapper.holiday-us-traditional .d2021-04-04 .cv-day-number::before {
+	content: "\271D";
+}
+.cv-wrapper.holiday-us-traditional .d2022-04-17 .cv-day-number::before {
+	content: "\271D";
+}
+.cv-wrapper.holiday-us-traditional .d2023-04-09 .cv-day-number::before {
+	content: "\271D";
+}
+/* Cinco de Mayo */
+.cv-wrapper.holiday-us-traditional .d05-05 .cv-day-number::before {
+	content: "\1F1F2\1F1FD";
+}
+/* Halloween - October 31 */
+.cv-wrapper.holiday-us-traditional .d10-31 .cv-day-number::before {
+	content: "\1F383";
+}
+/* St. Valentine's Day - February 14 */
+.cv-wrapper.holiday-us-traditional .d02-14 .cv-day-number::before {
+	content: "\1F498";
+}
+/*
+****************************************************
+Official US Holidays
+****************************************************
+*/
+/**** Same date every year ****/
+/* New Year's Day - January 1 */
+.cv-wrapper.holiday-us-official .d01-01 .cv-day-number::before {
+	content: "\1F37E";
+}
+/* Independence Day - July 4 */
+.cv-wrapper.holiday-us-official .d07-04 .cv-day-number::before {
+	content: "\1F1FA\1F1F8";
+}
+/* Veteran's Day - November 11 */
+.cv-wrapper.holiday-us-official .d11-11 .cv-day-number::before {
+	content: "\1F396";
+}
+/* Christmas Day - December 25 */
+.cv-wrapper.holiday-us-official .d12-25 .cv-day-number::before {
+	content: "\1F384";
+}
+/**** Same month position every year ****/
+/* Martin Luther King, Jr. Day - 3rd Monday of January */
+.cv-wrapper.holiday-us-official.m01 .day.dow1.instance3 .cv-day-number::before {
+	content: "\270C\1F3FE";
+}
+/* Washington's Birthday - 3rd Monday in February */
+.cv-wrapper.holiday-us-official.m02 .day.dow1.instance3 .cv-day-number::before {
+	content: "\1F34E";
+}
+/* Memorial Day - last Monday in May */
+.cv-wrapper.holiday-us-official.m05 .day.dow1.lastInstance .cv-day-number::before {
+	content: "\1F1FA\1F1F8";
+}
+/* Labor Day - 1st Monday in September */
+.cv-wrapper.holiday-us-official.m09 .day.dow1.instance1 .cv-day-number::before {
+	content: "\1F4AA";
+}
+/* Columbus Day - 2nd Monday in October */
+.cv-wrapper.holiday-us-official.m10 .day.dow1.instance2 .cv-day-number::before {
+	content: "\2388";
+}
+/* Thanksgiving Day - 4th Thursday of November */
+.cv-wrapper.holiday-us-official.m11 .day.dow4.instance4 .cv-day-number::before {
+	content: "\1F64F";
+}
 .hover\:border-gray-300:hover{
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -3873,6 +4209,10 @@ blockquote cite { font-size: 14px; margin-top: 15px; display: block; font-weight
 .hover\:bg-gray-50:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+.hover\:bg-blue-600:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
 .hover\:text-gray-500:hover{
   --tw-text-opacity: 1;
@@ -3921,6 +4261,10 @@ blockquote cite { font-size: 14px; margin-top: 15px; display: block; font-weight
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
+.focus\:border-gray-500:focus{
+  --tw-border-opacity: 1;
+  border-color: rgb(107 114 128 / var(--tw-border-opacity));
+}
 .focus\:bg-indigo-600:focus{
   --tw-bg-opacity: 1;
   background-color: rgb(79 70 229 / var(--tw-bg-opacity));
@@ -3940,6 +4284,10 @@ blockquote cite { font-size: 14px; margin-top: 15px; display: block; font-weight
 .focus\:bg-gray-50:focus{
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+.focus\:bg-white:focus{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 .focus\:text-gray-700:focus{
   --tw-text-opacity: 1;
@@ -4055,6 +4403,10 @@ blockquote cite { font-size: 14px; margin-top: 15px; display: block; font-weight
   .dark\:text-slate-500{
     --tw-text-opacity: 1;
     color: rgb(100 116 139 / var(--tw-text-opacity));
+  }
+  .dark\:text-gray-600{
+    --tw-text-opacity: 1;
+    color: rgb(75 85 99 / var(--tw-text-opacity));
   }
 }
 @media (min-width: 640px){
@@ -4222,8 +4574,14 @@ blockquote cite { font-size: 14px; margin-top: 15px; display: block; font-weight
   .md\:mt-0{
     margin-top: 0px;
   }
+  .md\:mb-0{
+    margin-bottom: 0px;
+  }
   .md\:grid{
     display: grid;
+  }
+  .md\:w-1\/2{
+    width: 50%;
   }
   .md\:grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));

@@ -14,6 +14,8 @@ return new class extends Migration {
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->uuid('public_id');
+            $table->enum('status', ["ACTIVE", "EXPIRED", "INACTIVE"]);
             $table->date("date");
             $table->string("image");
             $table->string("title");

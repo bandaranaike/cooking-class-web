@@ -14,6 +14,7 @@ return new class extends Migration {
     {
         Schema::create('galleries', function (Blueprint $table) {
             $table->id();
+            $table->uuid('public_id');
             $table->string('title', 255);
             $table->string('description', 1024)->nullable();
             $table->enum('status', ['ACTIVE', 'INACTIVE', 'DELETED'])->default('ACTIVE');
