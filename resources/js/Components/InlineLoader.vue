@@ -21,9 +21,6 @@ export default defineComponent({
             default: 8,
             type: Number
         }
-    },
-    mounted() {
-        console.log("Mounted inline loader", this.isLoading)
     }
 })
 </script>

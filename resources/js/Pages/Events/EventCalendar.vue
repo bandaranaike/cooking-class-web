@@ -79,6 +79,24 @@
             </div>
         </vue-final-modal>
 
+        <vue-final-modal v-model="deleteConfirm" max-width="3" classes="modal-container">
+            <div class="border-2 border-amber-50 rounded mt-20 max-w-md mx-auto bg-gray-50">
+                <div class="p-12">
+                    <div class="text-center pb-3"> Are you sure you want to delete this?</div>
+
+                    <div class="flex justify-center">
+                        <button @click="deleteEvent()" class="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4">
+                            <inline-loader size="6" :is-loading="isEventDeleting"></inline-loader>
+                            Yes
+                        </button>
+                        <button @click="deleteConfirm = false" class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-4">
+                            No
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </vue-final-modal>
+
         <vue-final-modal v-model="showDayEventModal" max-width="5" class="modal-container">
             <div class="border-2 border-amber-50 rounded mt-6 max-w-2xl mx-auto bg-gray-50">
                 <div class="p-12">
@@ -91,7 +109,10 @@
                     <div class="mb-3"> Date: <span>{{ viewEvent.date }}</span></div>
 
                     <div class="flex justify-end">
-                        <button @click="showDayEventModal = false" class="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4">
+                        <button @click="deleteConfirm = true" class="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4">
+                            Delete
+                        </button>
+                        <button @click="showDayEventModal = false" class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-4">
                             Close
                         </button>
                         <button @click="editEvent()" class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
@@ -134,7 +155,9 @@ export default defineComponent({
             showDayEventModal: false,
             viewEvent: {},
             isViewDataLoading: false,
-            isEventEditing: false
+            isEventEditing: false,
+            isEventDeleting: false,
+            deleteConfirm: false,
         }
     },
     components: {
@@ -198,7 +221,6 @@ export default defineComponent({
         },
         onClickItem(e) {
             this.isViewDataLoading = true;
-            console.log("e", e.originalItem)
             this.getEventData(e.originalItem.publicId)
             this.showDayEventModal = true;
         },
@@ -220,6 +242,16 @@ export default defineComponent({
             this.showEventCreateModal = true;
 
         },
+        deleteEvent() {
+            this.isEventDeleting = true;
+            axios.delete(route("events.delete", this.viewEvent.public_id)).then(() => {
+                this.items = this.items.filter(el => el.publicId !== this.viewEvent.public_id);
+            }).finally(() => {
+                this.deleteConfirm = false;
+                this.isEventDeleting = false;
+                this.showDayEventModal = false;
+            })
+        }
     },
     computed: {
         eventDate(val) {
@@ -239,7 +271,7 @@ export default defineComponent({
 }
 
 .cv-weeks {
-    min-height: 30rem !important;
+    min-height: 40rem !important;
 }
 </style>
 

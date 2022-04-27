@@ -21621,9 +21621,6 @@ __webpack_require__.r(__webpack_exports__);
       "default": 8,
       type: Number
     }
-  },
-  mounted: function mounted() {
-    console.log("Mounted inline loader", this.isLoading);
   }
 }));
 
@@ -24005,7 +24002,9 @@ __webpack_require__.r(__webpack_exports__);
       showDayEventModal: false,
       viewEvent: {},
       isViewDataLoading: false,
-      isEventEditing: false
+      isEventEditing: false,
+      isEventDeleting: false,
+      deleteConfirm: false
     };
   },
   components: {
@@ -24078,7 +24077,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     onClickItem: function onClickItem(e) {
       this.isViewDataLoading = true;
-      console.log("e", e.originalItem);
       this.getEventData(e.originalItem.publicId);
       this.showDayEventModal = true;
     },
@@ -24100,6 +24098,20 @@ __webpack_require__.r(__webpack_exports__);
       this.pickedDate = this.viewEvent.date;
       this.showDayEventModal = false;
       this.showEventCreateModal = true;
+    },
+    deleteEvent: function deleteEvent() {
+      var _this5 = this;
+
+      this.isEventDeleting = true;
+      axios__WEBPACK_IMPORTED_MODULE_6___default()["delete"](route("events.delete", this.viewEvent.public_id)).then(function () {
+        _this5.items = _this5.items.filter(function (el) {
+          return el.publicId !== _this5.viewEvent.public_id;
+        });
+      })["finally"](function () {
+        _this5.deleteConfirm = false;
+        _this5.isEventDeleting = false;
+        _this5.showDayEventModal = false;
+      });
     }
   },
   computed: {
@@ -29719,43 +29731,62 @@ var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNo
 var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Create Event");
 
 var _hoisted_22 = {
-  "class": "border-2 border-amber-50 rounded mt-6 max-w-2xl mx-auto bg-gray-50"
+  "class": "border-2 border-amber-50 rounded mt-20 max-w-md mx-auto bg-gray-50"
 };
 var _hoisted_23 = {
   "class": "p-12"
 };
-var _hoisted_24 = {
-  "class": "mb-6"
-};
+
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "text-center pb-3"
+}, " Are you sure you want to delete this?", -1
+/* HOISTED */
+);
+
 var _hoisted_25 = {
-  "class": "mb-3"
+  "class": "flex justify-center"
 };
 
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Title: ");
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Yes ");
 
 var _hoisted_27 = {
-  "class": "mb-3"
+  "class": "border-2 border-amber-50 rounded mt-6 max-w-2xl mx-auto bg-gray-50"
 };
-
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Description: ");
-
+var _hoisted_28 = {
+  "class": "p-12"
+};
 var _hoisted_29 = {
+  "class": "mb-6"
+};
+var _hoisted_30 = {
   "class": "mb-3"
 };
 
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Number of pax: ");
+var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Title: ");
 
-var _hoisted_31 = {
+var _hoisted_32 = {
   "class": "mb-3"
 };
 
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Date: ");
+var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Description: ");
 
-var _hoisted_33 = {
+var _hoisted_34 = {
+  "class": "mb-3"
+};
+
+var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Number of pax: ");
+
+var _hoisted_36 = {
+  "class": "mb-3"
+};
+
+var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Date: ");
+
+var _hoisted_38 = {
   "class": "flex justify-end"
 };
 
-var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Edit Event ");
+var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Edit Event ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_calendar_view_header = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("calendar-view-header");
@@ -29872,36 +29903,72 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, 8
       /* PROPS */
       , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_vue_final_modal, {
-        modelValue: _ctx.showDayEventModal,
+        modelValue: _ctx.deleteConfirm,
         "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
+          return _ctx.deleteConfirm = $event;
+        }),
+        "max-width": "3",
+        classes: "modal-container"
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+            onClick: _cache[7] || (_cache[7] = function ($event) {
+              return _ctx.deleteEvent();
+            }),
+            "class": "bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4"
+          }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inline_loader, {
+            size: "6",
+            "is-loading": _ctx.isEventDeleting
+          }, null, 8
+          /* PROPS */
+          , ["is-loading"]), _hoisted_26]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+            onClick: _cache[8] || (_cache[8] = function ($event) {
+              return _ctx.deleteConfirm = false;
+            }),
+            "class": "bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-4"
+          }, " No ")])])])];
+        }),
+        _: 1
+        /* STABLE */
+
+      }, 8
+      /* PROPS */
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_vue_final_modal, {
+        modelValue: _ctx.showDayEventModal,
+        "onUpdate:modelValue": _cache[13] || (_cache[13] = function ($event) {
           return _ctx.showDayEventModal = $event;
         }),
         "max-width": "5",
         "class": "modal-container"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Event on " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.viewEvent.date) + " ", 1
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Event on " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.viewEvent.date) + " ", 1
           /* TEXT */
           ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inline_loader, {
             size: 9,
             "is-loading": _ctx.isViewDataLoading
           }, null, 8
           /* PROPS */
-          , ["is-loading"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.viewEvent.title), 1
+          , ["is-loading"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.viewEvent.title), 1
           /* TEXT */
-          )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.viewEvent.description), 1
+          )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.viewEvent.description), 1
           /* TEXT */
-          )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.viewEvent.number_of_pax), 1
+          )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.viewEvent.number_of_pax), 1
           /* TEXT */
-          )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [_hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.viewEvent.date), 1
+          )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.viewEvent.date), 1
           /* TEXT */
-          )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-            onClick: _cache[7] || (_cache[7] = function ($event) {
-              return _ctx.showDayEventModal = false;
+          )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+            onClick: _cache[10] || (_cache[10] = function ($event) {
+              return _ctx.deleteConfirm = true;
             }),
             "class": "bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4"
+          }, " Delete "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+            onClick: _cache[11] || (_cache[11] = function ($event) {
+              return _ctx.showDayEventModal = false;
+            }),
+            "class": "bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-4"
           }, " Close "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-            onClick: _cache[8] || (_cache[8] = function ($event) {
+            onClick: _cache[12] || (_cache[12] = function ($event) {
               return _ctx.editEvent();
             }),
             "class": "bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
@@ -29910,7 +29977,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "is-loading": _ctx.isFormSubmitting
           }, null, 8
           /* PROPS */
-          , ["is-loading"]), _hoisted_34])])])])];
+          , ["is-loading"]), _hoisted_39])])])])];
         }),
         _: 1
         /* STABLE */
@@ -31855,7 +31922,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n::v-deep .modal-container {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n.cv-weeks {\n    min-height: 30rem !important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n::v-deep .modal-container {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n.cv-weeks {\n    min-height: 40rem !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

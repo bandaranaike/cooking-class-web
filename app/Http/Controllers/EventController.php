@@ -133,11 +133,12 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Event $event
-     * @return HttpResponse
+     * @param $public_id
+     * @return JsonResponse
      */
-    public function destroy(Event $event)
+    public function destroy($public_id): JsonResponse
     {
-        //
+        Event::wherePublicId($public_id)->delete();
+        return new JsonResponse(true);
     }
 }

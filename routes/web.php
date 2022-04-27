@@ -48,6 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('events/form', [EventController::class, 'create'])->name('events.form');
     Route::post('events/create', [EventController::class, 'store'])->name('events.create');
     Route::post('events/update/{id}', [EventController::class, 'update'])->name('events.update');
+    Route::delete('events/delete/{id}', [EventController::class, 'destroy'])->name('events.delete');
     Route::get('events/calendar', [EventController::class, 'showEventCalendar'])->name('events.calendar');
     Route::get('events/items', [EventController::class, 'getItemsForCalendar'])->name('events.items');
     Route::get('events/get-item/{id}', [EventController::class, 'getEventData'])->name('event.get-item');
