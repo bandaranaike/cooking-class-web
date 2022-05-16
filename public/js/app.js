@@ -21655,9 +21655,18 @@ __webpack_require__.r(__webpack_exports__);
     AppAdminLayout: _Layouts_AppAdminLayout__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   props: {
-    headers: [],
-    dataItems: [],
-    itemKeys: [],
+    headers: {
+      type: Array,
+      "default": []
+    },
+    dataItems: {
+      type: Array,
+      "default": []
+    },
+    itemKeys: {
+      type: Array,
+      "default": []
+    },
     actions: {
       type: Array,
       "default": function _default() {
@@ -21675,6 +21684,9 @@ __webpack_require__.r(__webpack_exports__);
           color: "amber"
         }];
       }
+    },
+    statusUpdateUrl: {
+      type: String
     }
   },
   data: function data() {},
@@ -21682,13 +21694,13 @@ __webpack_require__.r(__webpack_exports__);
     firstLetter: function firstLetter(word) {
       return word.charAt(0);
     },
-    changeStatus: function changeStatus(review, status) {
-      if (review.status !== status) {
-        axios__WEBPACK_IMPORTED_MODULE_1___default().patch(route('review.change-status'), {
+    changeStatus: function changeStatus(item, status) {
+      if (item.status !== status) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().patch(route(this.statusUpdateUrl), {
           status: status,
-          review_id: review.id
+          public_id: item.public_id
         }).then(function (res) {
-          review.status = res.data;
+          item.status = res.data;
         });
       }
     }
@@ -24964,7 +24976,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         );
       }), 256
       /* UNKEYED_FRAGMENT */
-      ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.dataItems, function (items, i) {
+      ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.dataItems, function (item, i) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.itemKeys, function (itemKey, i2) {
           return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", {
             "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["border-b border-slate-200 p-4 text-slate-500", {
@@ -24972,14 +24984,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             }])
           }, [itemKey === 'image' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
             key: 0,
-            src: "/storage/".concat(items[itemKey]),
+            src: "/storage/".concat(item[itemKey]),
             alt: "Image",
             "class": "w-14"
           }, null, 8
           /* PROPS */
           , _hoisted_7)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
             key: 1
-          }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(items[itemKey]), 1
+          }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item[itemKey]), 1
           /* TEXT */
           )], 2112
           /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
@@ -24990,10 +25002,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* UNKEYED_FRAGMENT */
         )), _ctx.actions.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.actions, function (action) {
           return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
-            "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["bg-gray-500 text-white py-1 px-2 rounded-full mr-2 w-7 h-7", items.status === action.status ? "bg-".concat(action.color, "-600") : '']),
+            "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["bg-gray-500 text-white py-1 px-2 rounded-full mr-2 w-7 h-7", item.status === action.status ? "bg-".concat(action.color, "-600") : '']),
             title: action.status,
             onClick: function onClick($event) {
-              return _ctx.changeStatus(items, action.status);
+              return _ctx.changeStatus(item, action.status);
             }
           }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.firstLetter(action.status)), 11
           /* TEXT, CLASS, PROPS */
@@ -30014,7 +30026,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "data-items": _ctx.events,
     "item-keys": _ctx.keys,
     headers: _ctx.headers,
-    actions: _ctx.actions
+    actions: _ctx.actions,
+    "status-update-url": "event.change-status"
   }, null, 8
   /* PROPS */
   , ["data-items", "item-keys", "headers", "actions"]);

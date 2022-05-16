@@ -19,19 +19,19 @@
                         </tr>
                         </thead>
                         <tbody class="bg-white">
-                        <tr v-for="(items, i) in dataItems">
+                        <tr v-for="(item, i) in dataItems">
                             <td class="border-b border-slate-200 p-4 text-slate-500" v-for="(itemKey, i2) in itemKeys"
                                 :class="{'pl-8': i2 === 0}"
                             >
-                                <img v-if="itemKey === 'image'" :src="`/storage/${items[itemKey]}`" alt="Image" class="w-14">
-                                <template v-else> {{ items[itemKey] }}</template>
+                                <img v-if="itemKey === 'image'" :src="`/storage/${item[itemKey]}`" alt="Image" class="w-14">
+                                <template v-else> {{ item[itemKey] }}</template>
                             </td>
                             <td class="border-b border-slate-200 p-4 pr-8 text-slate-500" v-if="actions.length">
                                 <button class="bg-gray-500 text-white py-1 px-2 rounded-full mr-2 w-7 h-7"
                                         v-for="action in actions"
                                         :title="action.status"
-                                        @click="changeStatus(items, action.status)"
-                                        :class=" items.status === action.status ? `bg-${action.color}-600` : ''">
+                                        @click="changeStatus(item, action.status)"
+                                        :class=" item.status === action.status ? `bg-${action.color}-600` : ''">
                                     {{ firstLetter(action.status) }}
                                 </button>
                             </td>
@@ -56,9 +56,9 @@ export default defineComponent({
     name: "ListTable",
     components: {Button, AppAdminLayout},
     props: {
-        headers: [],
-        dataItems: [],
-        itemKeys: [],
+        headers: {type: Array, default: []},
+        dataItems: {type: Array, default: []},
+        itemKeys: {type: Array, default: []},
         actions: {
             type: Array,
             default() {
@@ -69,6 +69,9 @@ export default defineComponent({
                     {status: "PENDING", color: "amber"},
                 ]
             }
+        },
+        statusUpdateUrl: {
+            type: String
         }
 
     },
@@ -79,12 +82,12 @@ export default defineComponent({
         firstLetter(word) {
             return word.charAt(0)
         },
-        changeStatus(review, status) {
-            if (review.status !== status) {
-                axios.patch(route('review.change-status'), {
-                    status, review_id: review.id
+        changeStatus(item, status) {
+            if (item.status !== status) {
+                axios.patch(route(this.statusUpdateUrl), {
+                    status, public_id: item.public_id
                 }).then(res => {
-                    review.status = res.data
+                    item.status = res.data
                 })
             }
         }

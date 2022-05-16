@@ -141,4 +141,16 @@ class EventController extends Controller
         Event::wherePublicId($public_id)->delete();
         return new JsonResponse(true);
     }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function updateStatus(Request $request): JsonResponse
+    {
+        $event = Event::wherePublicId($request->get('public_id'))->firstOrFail();
+        $event->status = $request->get('status');
+        $event->save();
+        return new JsonResponse($event->status);
+    }
 }

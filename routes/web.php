@@ -52,6 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('events/calendar', [EventController::class, 'showEventCalendar'])->name('events.calendar');
     Route::get('events/items', [EventController::class, 'getItemsForCalendar'])->name('events.items');
     Route::get('events/get-item/{id}', [EventController::class, 'getEventData'])->name('event.get-item');
+    Route::patch('events', [EventController::class, 'updateStatus'])->name('event.change-status');
 });
 
 Route::get('gallery', [GalleryController::class, 'index'])->name('gallery.show');

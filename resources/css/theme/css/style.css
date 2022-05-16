@@ -728,7 +728,7 @@ table tr td a { color: #e93e21; }
 .testimonial-avatar {
     display: inline-block;
 }
-.testimonial-avatar img { background: transparent; border: 3px solid #fff; width: 70px; height: 70px; border-radius: 50%; }
+.testimonial-avatar img { background: transparent; border: 3px solid #fff; width: 70px; height: 70px; border-radius: 50%; object-fit: cover}
 .testimonial-info p { margin-bottom: 0px; font-style: italic; margin-top: 15px; padding: 0 100px; }
 .testimonial-info strong { font-weight: 500; color: #e93e21; margin-top: 20px; font-size: 18px; }
 .testimonial-info span { font-weight: normal; display: block; padding: 5px 0; font-size: 13px; }
