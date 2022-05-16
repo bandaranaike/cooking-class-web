@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed|string $public_id
  * @method static orderByDesc(string $string)
  * @method static wherePublicId($public_id)
+ * @method static whereStatus(string $EVENT_STATUS_ACTIVE)
  */
 class Event extends Model
 {

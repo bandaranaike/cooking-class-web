@@ -57,8 +57,8 @@
                     <div class="item" v-for="event in events">
                         <div class="blog-entry">
                             <div class="blog-entry-image">
-                                <img class="img-fluid" :alt="event.title" :src="`/storage/${event.image}`"/>
-                                <div class="entry-date">{{ event.day }}<span>{{ event.month }}</span></div>
+                                <img class="img-fluid" :alt="event.title" :src="`/images/events/${event.image}`"/>
+                                <div class="entry-date">{{ toDate(event.date) }}<span>{{ toMonthName(event.date) }}</span></div>
                             </div>
                             <div class="entry-content">
                                 <div class="entry-title">
@@ -283,7 +283,24 @@ export default defineComponent({
             axios.get('events/get-list').then(r => {
                 this.events = r.data;
             })
-        }
+        },
+        dateSegments(date, options) {
+            const dateObject = new Date(date);
+            dateObject.setMonth(dateObject.getMonth());
+
+            return dateObject.toLocaleString('en-US', options);
+        },
+        toMonthName(date) {
+            return this.dateSegments(date, {
+                month: 'short'
+            });
+        },
+        toDate(date) {
+            return this.dateSegments(date, {
+                day: "numeric"
+            });
+        },
+
     }
 });
 </script>

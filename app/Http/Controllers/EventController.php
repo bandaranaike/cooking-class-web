@@ -15,6 +15,10 @@ use Inertia\Response;
 
 class EventController extends Controller
 {
+
+    const EVENT_IMAGES_COUNT = 4;
+    const EVENT_STATUS_ACTIVE = "ACTIVE";
+
     /**
      * Display a listing of the resource.
      *
@@ -63,6 +67,17 @@ class EventController extends Controller
         return Inertia::render("Events/Create");
     }
 
+    private function getActiveEventCount()
+    {
+        return Event::whereStatus(self::EVENT_STATUS_ACTIVE)->count();
+    }
+
+    private function getNextEventImageNumber(): int
+    {
+        $active_event_count = $this->getActiveEventCount();
+        return ($active_event_count % self::EVENT_IMAGES_COUNT) + 1;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -73,9 +88,9 @@ class EventController extends Controller
     {
         $event = new Event();
         $event->date = $request->get('date');
-        $event->image = "default.png";
+        $event->image = "event-" . $this->getNextEventImageNumber() . ".jpg";
         $event->public_id = Str::uuid()->toString();
-        $event->status = "ACTIVE";
+        $event->status = self::EVENT_STATUS_ACTIVE;
         $event->title = $request->get('title');
         $event->description = $request->get('description');
         $event->url = Str::slug($event->title);
