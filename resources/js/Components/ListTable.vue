@@ -2,7 +2,7 @@
     <app-admin-layout title="Reviews">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Reviews List
+                {{title}} List
             </h2>
         </template>
         <div class="not-prose relative bg-slate-400 rounded-xl overflow-hidden dark:bg-slate-100 p-4">
@@ -72,8 +72,10 @@ export default defineComponent({
         },
         statusUpdateUrl: {
             type: String
-        }
-
+        },
+        title: {
+            type: String
+        },
     },
     data() {
 

@@ -115,9 +115,9 @@ class ReviewController extends Controller
 
     public function updateStatus(Request $request)
     {
-        $review = Review::find($request->get('review_id'));
+        $review = Review::wherePublicId($request->get('public_id'))->firstOrFail();
         $review->status = $request->get('status');
         $review->save();
-        return $review->status;
+        return new JsonResponse($review->status);
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <list-table :data-items="events" :item-keys="keys" :headers="headers" :actions="actions" status-update-url="event.change-status"></list-table>
+    <list-table :data-items="events" title="Events" :item-keys="keys" :headers="headers" :actions="actions" status-update-url="event.change-status"></list-table>
 </template>
 
 <script>
