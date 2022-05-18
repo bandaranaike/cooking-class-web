@@ -67,7 +67,7 @@ h4 { font-size: 30px; font-style: normal; line-height: 30px; }
 h5 { font-size: 22px; font-style: normal; line-height: 22px; }
 h6 { font-size: 18px; font-style: normal; line-height: 18px; }
 ul { margin: 0px; padding: 0px; }
-p { font-size: 14px; font-weight: normal; line-height: 24px; color: #9d9d9d; }
+p { font-size: 14px; font-weight: normal; line-height: 24px; color: #4f4f4f; }
 label { font-size: 15px; font-weight: 400; color: #9d9d9d; }
 .label { color: #ffffff; font-size: 9px; }
 *::-moz-selection { background: #1e2327; color: #ffffff; text-shadow: none; }

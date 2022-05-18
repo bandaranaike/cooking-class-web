@@ -57,3 +57,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('gallery', [GalleryController::class, 'index'])->name('gallery.show');
 Route::get('gallery/show/{gallery:slug}', [GalleryController::class, 'show'])->name('gallery.item');
+Route::get('icons', function () {
+    return Inertia::render('IconList');
+});
