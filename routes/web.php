@@ -5,6 +5,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('gallery/check-available-slug', [GalleryController::class, 'checkAvailableSlug'])->name('gallery.slug-availability');
     Route::get('gallery/form', [GalleryController::class, 'create'])->name('gallery.form');
     Route::post('gallery/create', [GalleryController::class, 'store'])->name('gallery.create');
+    Route::get('gallery/list', [GalleryController::class, 'list'])->name('gallery.list');
+    Route::delete('gallery/{gallery}', [GalleryController::class, 'destroy'])->name('gallery.delete');
+    Route::delete('gallery/image/{galleryImage}', [GalleryController::class, 'destroyImage'])->name('gallery.image-delete');
+    Route::get('gallery/get-list', [GalleryController::class, 'getGalleriesList'])->name('gallery.get-list');
+    Route::post('gallery/upload-images/{gallery}', [GalleryController::class, 'uploadImages'])->name('gallery.upload-image');
 
     Route::get('events/list', [EventController::class, 'index'])->name('events.list');
     Route::get('events/get-list', [EventController::class, 'getList'])->name('events.get-list');
@@ -56,6 +62,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::get('gallery', [GalleryController::class, 'index'])->name('gallery.show');
+Route::post('reservation', [ReservationController::class, 'store'])->name('reservation.create');
 Route::get('gallery/show/{gallery:slug}', [GalleryController::class, 'show'])->name('gallery.item');
 Route::get('icons', function () {
     return Inertia::render('IconList');

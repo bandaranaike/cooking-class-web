@@ -6,8 +6,11 @@ use App\Http\Requests\StoreGalleryRequest;
 use App\Http\Requests\UpdateGalleryRequest;
 use App\Models\Gallery;
 use App\Models\GalleryImage;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -27,6 +30,7 @@ class GalleryController extends Controller
         return Inertia::render('Gallery/GalleryIndex', compact('galleries'));
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -34,24 +38,56 @@ class GalleryController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Admin/GalleryCreate');
+        return Inertia::render('Gallery/GalleryCreate');
+    }
+
+    /**
+     * Show the gallery list.
+     *
+     * @return Response
+     */
+    public function list(): Response
+    {
+        $galleries = $this->getGalleriesList();
+        return Inertia::render('Gallery/GalleryManager', compact('galleries'));
+    }
+
+    /**
+     * @return Builder[]|Collection
+     */
+    public function getGalleriesList(): Collection|array
+    {
+        return Gallery::with('images')->get();
+    }
+
+    /**
+     * @param Gallery $gallery
+     * @param Request $request
+     * @return void
+     */
+    public function uploadImages(Gallery $gallery, Request $request): void
+    {
+        $this->saveImages($gallery, $request);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param StoreGalleryRequest $request
-     * @return void
+     * @return JsonResponse
      */
-    public function store(StoreGalleryRequest $request)
+    public function store(StoreGalleryRequest $request): JsonResponse
     {
         $gallery = new Gallery();
         $gallery->title = $request->get('title');
+        $gallery->public_id = Str::uuid()->toString();
         $gallery->description = $request->get('description');
         $gallery->slug = $request->get('slug');
         $gallery->save();
 
         $this->saveImages($gallery, $request);
+
+        return new JsonResponse("Gallery Created!");
 
     }
 
@@ -60,12 +96,13 @@ class GalleryController extends Controller
      * @param Request $request
      * @return void
      */
-    private function saveImages(Gallery $gallery, Request $request)
+    private function saveImages(Gallery $gallery, Request $request): void
     {
         $saving_image_objects = [];
         foreach ($request->file('images') as $file) {
             $gallery_image = new GalleryImage();
             $gallery_image->image = $file->store('gallery');
+            $gallery_image->public_id = Str::uuid()->toString();
             $saving_image_objects[] = $gallery_image;
         }
 
@@ -112,14 +149,38 @@ class GalleryController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Gallery $gallery
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function destroy(Gallery $gallery)
+    public function destroy(Gallery $gallery): JsonResponse
     {
-
+        Storage::delete($gallery->images->map(fn($image) => $image->image)->toArray());
+        $gallery->images()->delete();
+        $gallery->delete();
+        return new JsonResponse("Deleted");
     }
 
-    public function checkAvailableSlug(Request $request)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param GalleryImage $galleryImage
+     * @return JsonResponse
+     */
+    public function destroyImage(GalleryImage $galleryImage): JsonResponse
+    {
+        if (Storage::delete($galleryImage->image)) {
+            $message = $galleryImage->image . " deleted!";
+            $galleryImage->delete();
+            return new JsonResponse($message);
+        } else {
+            return new JsonResponse("Deleting image was not success!", 400);
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function checkAvailableSlug(Request $request): JsonResponse
     {
         $count = 1;
         $slug = $original_slug = Str::slug($request->get('title'));

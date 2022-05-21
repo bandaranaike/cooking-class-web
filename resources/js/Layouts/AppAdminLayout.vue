@@ -37,6 +37,9 @@
                                 <jet-nav-link :href="route('gallery.form')" :active="route().current('gallery.form')">
                                     Gallery create
                                 </jet-nav-link>
+                                <jet-nav-link :href="route('gallery.list')" :active="route().current('gallery.list')">
+                                    Gallery Manager
+                                </jet-nav-link>
                             </div>
                         </div>
 

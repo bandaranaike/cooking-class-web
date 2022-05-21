@@ -148,93 +148,7 @@
                         </div>
                     </div>
                     <div class="white-bg">
-                        <form class="row">
-                            <div class="col-lg-12 col-md-12">
-                                <h3 class="mb-8">Reservation form</h3>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="form-field">
-                                    <i class="fa fa-pencil"></i>
-                                    <input
-                                        class="web placeholder"
-                                        type="text"
-                                        placeholder="Full Name"
-                                        name="web"
-                                    />
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="form-field">
-                                    <i class="fa fa-phone"></i>
-                                    <input
-                                        class="web placeholder"
-                                        type="text"
-                                        placeholder="Phone Number"
-                                        name="web"
-                                    />
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="form-field">
-                                    <i class="fa fa-envelope-o"></i>
-                                    <input
-                                        class="web placeholder"
-                                        type="text"
-                                        placeholder="Your Email"
-                                        name="web"
-                                    />
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="form-field" id="datepicker">
-                                    <i class="fa fa-calendar add-on"></i>
-                                    <input
-                                        data-format="yyyy-MM-dd"
-                                        type="text"
-                                        placeholder="Select date"
-                                    />
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="form-field" id="timepicker">
-                                    <i class="fa fa-clock-o icon-time add-on"></i>
-                                    <input
-                                        data-format="hh:mm:ss"
-                                        type="text"
-                                        placeholder="Select time"
-                                    />
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="form-field">
-                                    <div class="selected-box">
-                                        <select>
-                                            <option value="Person">Person</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="2">More then 2</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12">
-                                <div class="form-field">
-                                    <i class="fa fa-comment-o"></i>
-                                    <textarea
-                                        class="input-message placeholder"
-                                        placeholder="Comment*"
-                                        rows="2"
-                                        name="message"
-                                    ></textarea>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="submit-button">
-                                    <a class="button" href="#">Book A Table</a>
-                                    <span>Is all about good food. Enjoy our decious food</span>
-                                </div>
-                            </div>
-                        </form>
+                        <reservation></reservation>
                     </div>
                 </div>
             </div>
@@ -251,10 +165,12 @@ import JetNavLink from "@/Jetstream/NavLink.vue";
 import SlideShow from "./Component/SlideShow.vue";
 import Welcome from "@/Jetstream/Welcome.vue";
 import axios from "axios";
+import Reservation from "@/Components/Reservation";
 
 export default defineComponent({
     props: ["testimonials"],
     components: {
+        Reservation,
         AppLayout,
         JetNavLink,
         SlideShow,

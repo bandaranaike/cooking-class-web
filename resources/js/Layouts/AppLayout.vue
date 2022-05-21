@@ -152,8 +152,8 @@
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 py-6 border-t text-sm">
                         <div class="">
                             <div class="copyright">
-                                <p class="text-black"> &copy;Copyright <span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span>
-                                    All right reserved by The Zayka.
+                                <p class="text-black"> &copy;Copyright <span id="copyright"> </span>
+                                    All right reserved by The Thotupola Residence.
                                 </p>
                             </div>
                         </div>
