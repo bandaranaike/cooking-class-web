@@ -1,19 +1,13 @@
 <template>
     <div id="app">
         <div class="home-gallery-container">
-            <grid-images :cells="5" :items='images'></grid-images>
+            <grid-images :cells="cells" :items='items' :class="css"></grid-images>
         </div>
     </div>
 </template>
 
 <script setup>
 import GridImages from '@chinhpd/vue3-grid-images';
-// stylesheet
-import '@morioh/v-lightbox/dist/lightbox.css';
-
-const images = ["/images/sliders/sl-1.jpg", "/images/sliders/sl-2.jpg", "/images/sliders/sl-1.jpg"];
-
-console.log(GridImages)
 
 defineProps({
     items: {
@@ -34,10 +28,15 @@ defineProps({
 
 </script>
 <style>
+img {
+    display: unset !important;
+}
 
 .home-gallery-container {
     width: 800px;
     height: 600px;
-    margin: 50px auto;
+    margin: 30px auto 50px;
+    max-width: 100%;
+    max-height: 50vh;
 }
 </style>

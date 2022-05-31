@@ -1,45 +1,23 @@
 <template>
-    <section class="gallery white-bg page-section-ptb">
-        <div class="px-72 mx-auto">
-            <div class="isotope-filters">
-                <button data-filter="" class="active">All</button>
-                <button data-filter=".vegetarian"> Vegetarian</button>
-                <button data-filter=".chinese">Chinese</button>
-                <button data-filter=".italian">Italian</button>
-                <button data-filter=".mexican">Mexican</button>
-            </div>
+    <app-layout title="Gallery">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+            <template v-for="gallery in galleries">
+                <h3 class="text-center">{{ gallery.title }}</h3>
+                <image-gallery :items="gallery.images.map(image=>('/storage/'+ image.image))"></image-gallery>
+            </template>
         </div>
-        <div class="px-36 mx-auto">
-            <div class="isotope popup-gallery grid grid-cols-3">
-                <div class="grid-item chinese mexican" v-for="gallery in galleries">
-                    <a :href="`/gallery/show/${gallery.slug}`" class="gallery-item">
-                        <span v-if="gallery.images[0]?.image"><img class="img-fluid" :src="`/storage/${gallery.images[0].image}`" alt=""></span>
-                        <div class="overlay">
-                            <div class="overlay-content">
-                                <h3><a href="#"> {{ gallery.title }} </a></h3>
-                                <a class="portfolio-img" :href="gallery.image"><i class="fa fa-expand"></i></a>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+    </app-layout>
 </template>
 
 <script>
+import AppLayout from "@/Layouts/AppLayout";
+import ImageGallery from "@/Components/ImageGallery";
+
 export default {
     name: "GalleryIndex",
+    components: {ImageGallery, AppLayout},
     props: {
         galleries: Array
     }
 }
 </script>
-
-<style>
-.galllery-item {
-    border: 1px solid #ddd;
-    min-height: 200px;
-    margin: 0 24px 24px 0;
-}
-</style>

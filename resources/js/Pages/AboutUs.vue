@@ -1,7 +1,7 @@
 <template>
     <app-layout title="About Us">
         <div class="inner-intro parallax bg-overlay-black-70" style="background-image: url(/images/about-us-bg.jpeg);">
-            <div class="container">
+            <div class="container mx-auto">
                 <div class="row text-center intro-title">
                     <div class="col-md-12">
                         <h1 class="text-orange">About us</h1>
@@ -15,7 +15,7 @@
             </div>
         </div>
         <section class="about white-bg page-section-ptb">
-            <div class="container px-36">
+            <div class="container mx-auto max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
                 <div class="grid grid-cols-2">
                     <div class="pr-6">
                         <div class="custom-content">

@@ -1,7 +1,7 @@
 <template>
     <app-layout title="Contact us">
         <section class="contact bg-white page-section-ptb">
-            <div class="container md:mx-auto">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
 
                 <div class="section-title text-center">
                     <div class="title-separator">
@@ -145,7 +145,7 @@
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15830.242996022704!2d80.608553!3d7.290712!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3b354312c462936c!2sThotupola%20Residence!5e0!3m2!1sen!2slk!4v1644911799618!5m2!1sen!2slk"
                     width="100%"
-                    height="450"
+                    height="400"
                     style="border: 0"
                     allowfullscreen="true"
                     loading="lazy"
