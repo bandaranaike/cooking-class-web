@@ -8,6 +8,7 @@ use App\Models\Review;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -47,6 +48,7 @@ class ReviewController extends Controller
 
         $review = new Review();
         $review->rating = $request->get('rating');
+        $review->public_id = Str::uuid()->toString();
         $review->user_name = $request->get('user_name');
         $review->user_country = $request->get('user_country');
         $review->user_image = $this->saveUploadedUserImage($request);
@@ -113,9 +115,9 @@ class ReviewController extends Controller
 
     public function updateStatus(Request $request)
     {
-        $review = Review::find($request->get('review_id'));
+        $review = Review::wherePublicId($request->get('public_id'))->firstOrFail();
         $review->status = $request->get('status');
         $review->save();
-        return $review->status;
+        return new JsonResponse($review->status);
     }
 }

@@ -6,3 +6,9 @@
 @import "theme/css/flaticon.css";
 @import "theme/css/style.css";
 @import "theme/css/custom.scss";
+
+/*Calendar Styles*/
+
+@import "vue-simple-calendar/dist/style.css";
+@import "vue-simple-calendar/static/css/default.css";
+@import "vue-simple-calendar/static/css/holidays-us.css";

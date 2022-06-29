@@ -7,18 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property false|mixed|string $image
+ * @property false|mixed|string $public_id
  */
 class GalleryImage extends Model
 {
     use HasFactory;
 
-    public function getSrcAttribute($image_name)
+    /**
+     * @return string
+     */
+    public function getRouteKeyName(): string
     {
-        return "/storage/" . $image_name;
-    }
-
-    public function getThumbnailAttribute($image_name)
-    {
-        return "/storage/" . $image_name;
+        return 'public_id';
     }
 }

@@ -1,8 +1,8 @@
 <template>
     <app-admin-layout title="Create Gallery">
         <div class="grid grid-cols-1 md:grid-cols-2 pt-4 pl-4">
-            <jet-input @change="createSlug" :error="errors?.title" label="Title" v-model="form.title"></jet-input>
-            <jet-input @change="checkSlug" :error="errors?.slug" label="Slug" v-model="form.slug"></jet-input>
+            <jet-input @change="createSlug" :error="errors?.title" label="Title *" v-model="form.title"></jet-input>
+            <jet-input @change="checkSlug" :error="errors?.slug" label="Slug *" v-model="form.slug"></jet-input>
         </div>
         <div class="p-4">
             <div class="form-field mb-8">
@@ -12,8 +12,10 @@
                     v-model="form.description"></textarea>
                 <div class="text-sm text-red-700" v-if="errors?.description">{{ errors?.description }}</div>
             </div>
+            Images *
             <input type="file" multiple @change="onFilesChange">
             <button @click="submitFormLocal" class="button">Create Gallery</button>
+            <span class="ml-3 mt-3" :class="messageClass" v-if="message">{{ message }}</span>
         </div>
     </app-admin-layout>
 </template>
@@ -33,18 +35,29 @@ export default defineComponent({
             form: {},
             isSlugAutoGenerating: false,
             slugManuallyChanged: false,
-            files: null
+            files: null,
+            message: null,
+            messageClass: 'text-green-800',
         }
     },
     methods: {
         async submitFormLocal() {
-            this.submitForm(route('gallery.create'), this.form).then(r => {
-
-            }).catch(e => {
-                this.errors = e.response.data.errors
-            }).finally(() => {
-                location.reload();
-            });
+            if (this.files && this.files.length > 0 && this.form.title && this.form.slug) {
+                this.submitForm(route('gallery.create'), this.form).then(r => {
+                    this.message = r.data;
+                    this.files = null;
+                    this.form = {};
+                }).catch(e => {
+                    this.message = "There was an error!";
+                    this.messageClass = 'text-red-500';
+                    console.log(e);
+                }).finally(() => {
+                    // location.reload();
+                });
+            } else {
+                this.message = "Please fill required fields!";
+                this.messageClass = 'text-red-500';
+            }
         },
         createSlug() {
             if (!this.slugManuallyChanged) {
@@ -52,6 +65,7 @@ export default defineComponent({
                 axios.post(route('gallery.slug-availability'), {title: this.form.title}).then(r => {
                     this.form.slug = r.data;
                 }).catch(e => {
+
                     console.log(e)
                 }).finally(() => {
                     this.isSlugAutoGenerating = false;

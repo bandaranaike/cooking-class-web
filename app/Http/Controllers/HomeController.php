@@ -11,7 +11,7 @@ use Inertia\Response;
 class HomeController extends Controller
 {
     const HOME_PAGE_REVIEWS_STATUS = 'APPROVED';
-    const HOME_PAGE_REVIEWS_LIMIT = 3;
+    const HOME_PAGE_REVIEWS_LIMIT = 2;
 
     public function homePage(): Response
     {

@@ -18,23 +18,27 @@
                             </div>
 
                             <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <div class="hidden space-x-4 sm:-my-px sm:ml-6 sm:flex">
                                 <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </jet-nav-link>
-                            </div>
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link :href="route('review.create')" :active="route().current('review.create')">
+                                <jet-nav-link :href="route('review.form')" :active="route().current('review.form')">
                                     Create review
                                 </jet-nav-link>
                                 <jet-nav-link :href="route('review.list')" :active="route().current('review.list')">
                                     Reviews
                                 </jet-nav-link>
-                            </div>
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link :href="route('gallery.create')"
-                                              :active="route().current('gallery.create')">
+                                <jet-nav-link :href="route('events.list')" :active="route().current('events.list')">
+                                    Events
+                                </jet-nav-link>
+                                <jet-nav-link :href="route('events.calendar')" :active="route().current('events.calendar')">
+                                    Events Calendar
+                                </jet-nav-link>
+                                <jet-nav-link :href="route('gallery.form')" :active="route().current('gallery.form')">
                                     Gallery create
+                                </jet-nav-link>
+                                <jet-nav-link :href="route('gallery.list')" :active="route().current('gallery.list')">
+                                    Gallery Manager
                                 </jet-nav-link>
                             </div>
                         </div>
