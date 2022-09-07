@@ -14,7 +14,10 @@
             </div>
             Images *
             <input type="file" multiple @change="onFilesChange">
-            <button @click="submitFormLocal" class="button">Create Gallery</button>
+            <button @click="submitFormLocal" class="button">
+                <inline-loader size="6" :is-loading="isImageUploading"></inline-loader>
+                Create Gallery
+            </button>
             <span class="ml-3 mt-3" :class="messageClass" v-if="message">{{ message }}</span>
         </div>
     </app-admin-layout>
@@ -26,14 +29,16 @@ import AppAdminLayout from "@/Layouts/AppAdminLayout";
 import axios from "axios";
 import Forms from "@/Mixing/Forms";
 import JetInput from "@/Components/CustomInput";
+import InlineLoader from "@/Components/InlineLoader";
 
 export default defineComponent({
-    components: {AppAdminLayout, JetInput},
+    components: {InlineLoader, AppAdminLayout, JetInput},
     data() {
         return {
             errors: {},
             form: {},
             isSlugAutoGenerating: false,
+            isImageUploading: false,
             slugManuallyChanged: false,
             files: null,
             message: null,
@@ -43,6 +48,7 @@ export default defineComponent({
     methods: {
         async submitFormLocal() {
             if (this.files && this.files.length > 0 && this.form.title && this.form.slug) {
+                this.isImageUploading = true;
                 this.submitForm(route('gallery.create'), this.form).then(r => {
                     this.message = r.data;
                     this.files = null;
@@ -52,7 +58,7 @@ export default defineComponent({
                     this.messageClass = 'text-red-500';
                     console.log(e);
                 }).finally(() => {
-                    // location.reload();
+                    this.isImageUploading = false;
                 });
             } else {
                 this.message = "Please fill required fields!";

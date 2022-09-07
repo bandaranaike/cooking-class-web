@@ -101,50 +101,19 @@
             <!--================== footer -->
             <footer class="">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 py-12">
-                        <div class="">
+                    <div class="grid grid-cols-1 py-12">
+                        <div class="text-center">
                             <div class="logo-sec">
-                                <div class="mb-4">
-                                    <Link :href="route('home')" class="mb-6">
-                                        <jet-application-mark class="block h-16 w-auto"/>
-                                    </Link>
-                                </div>
                                 <p class="text-black my-3">Sulochana's Kitchen is a subsidiary of Thotupola Residence. Please go and see the website
                                     <a href="https://thotupolaresidence.lk" target="_blank">https://thotupolaresidence.lk</a></p>
                                 <div class="contact">
                                     <p class="text-black mb-2"><i class="fa fa-map-marker text-red-700 mr-3"></i>162/1 George E. de Silva Mawatha, Kandy 20032</p>
                                     <p class="text-black mb-2"><i class="fa fa-phone text-red-700 mr-3"></i>(94) 7778 02093</p>
-                                    <p class="text-black mb-2"><a class="text-black" href="mailto:info@thotupolaresidence.lk">
+                                    <p class="text-black"><a class="text-black" href="mailto:info@thotupolaresidence.lk">
                                         <i class="fa fa-envelope-o text-red-700 mr-3"></i>info@thotupolaresidence.lk
                                     </a>
                                     </p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6">
-                            <div class="opening-time">
-                                <h4 class="text-black mb-10"><span class="text-orange">Open</span> time</h4>
-                                <ul>
-                                    <li>Mon-Friday <span class="text-end">8am - 2pm </span></li>
-                                    <li>Saturday <span>10am - 4pm</span></li>
-                                    <li>Sunday <span>11am - 4pm</span></li>
-                                    <li class="close-day"><span class="graph-icon flaticon-closed-sign fa-5x text-red-500"></span><em class="text-orange"> On public holidays</em>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-3 col-sm-6">
-                            <div class="footer-gallery">
-                                <h4 class="text-black"><span class="text-orange">Photo</span> Gallery</h4>
-                                <ul>
-                                    <li><img class="img-fluid" src="images/gallery/01.jpg" alt=""></li>
-                                    <li><img class="img-fluid" src="images/gallery/02.jpg" alt=""></li>
-                                    <li><img class="img-fluid" src="images/gallery/03.jpg" alt=""></li>
-                                    <li><img class="img-fluid" src="images/gallery/04.jpg" alt=""></li>
-                                    <li><img class="img-fluid" src="images/gallery/05.jpg" alt=""></li>
-                                    <li><img class="img-fluid" src="images/gallery/06.jpg" alt=""></li>
-                                </ul>
                             </div>
                         </div>
                     </div>
